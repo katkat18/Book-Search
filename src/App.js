@@ -40,6 +40,7 @@ class App extends Component {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchString}`)
           .then((response) => {
             const searchedBooks = response.data.items;
+            console.log(searchedBooks);
 
             this.setState({
               text: word,
