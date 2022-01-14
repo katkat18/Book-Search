@@ -9,11 +9,12 @@ class App extends Component {
     super(props);
 
     this.state = {
-      text: 'Harry Potter',
-      title: 'Harry Potter',
+      text: '',
+      title: '',
       books: [],
       hasErrors: false,
-      requestRecieved: false
+      requestRecieved: false, 
+      initialLoad: true
     };
   }
 
@@ -35,12 +36,13 @@ class App extends Component {
 
       this.setState({
         books: [],
-        requestRecieved: false
+        requestRecieved: false,
+        initialLoad: false
       }, () => {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchString}`)
           .then((response) => {
             const searchedBooks = response.data.items;
-            console.log(searchedBooks);
+            //console.log(searchedBooks);
 
             this.setState({
               text: word,
@@ -60,6 +62,16 @@ class App extends Component {
     }
   }
 
+
+
+  componentDidMount() {
+    this.setState({
+      requestRecieved: true,
+    });
+  }
+
+
+/*
   componentDidMount() {
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.text}`)
       .then((response) => {
@@ -77,10 +89,12 @@ class App extends Component {
           requestRecieved: true
         });
       });
-  }
+  }*/
 
   render() {
     let output;
+
+    //console.log(`this is load: ${this.state.initialLoad}`);
 
     if (typeof this.state.books === 'undefined') {
       output = <p><strong>No books found for {this.state.title}</strong></p>
