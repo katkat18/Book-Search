@@ -37,7 +37,7 @@ function BookCard({ book }) {
                     <h2>{book.volumeInfo.title}</h2>
                     <p>by: {book.volumeInfo.authors}</p>
                     <p>{book.volumeInfo.categories}</p>
-                    <p>{book.volumeInfo.description}</p>
+                    <p className="description">{book.volumeInfo.description}</p>
                 </div>
             </a>
         </li>

@@ -9,8 +9,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      text: 'harry potter',
-      title: 'harry potter',
+      text: 'Harry Potter',
+      title: 'Harry Potter',
       books: [],
       hasErrors: false,
       requestRecieved: false
@@ -93,16 +93,19 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <h1>Books, Books,...BOOKS!</h1>
-        <form onSubmit={this.searchHandler}>
-          Search BOOKS
-          <input
-            name="text"
-            value={this.state.text}
-            onChange={this.textHandler}
-          />
-          <button type="submit">search!</button>
-        </form>
+        <div className="header">
+          <h1>Search Books!</h1>
+          <div className="wrap">
+            <form onSubmit={this.searchHandler}>
+              <input
+                name="text"
+                value={this.state.text}
+                onChange={this.textHandler}
+              />
+              <button type="submit"><i className="fa fa-search"></i></button>
+            </form>
+          </div>
+        </div>
         {!this.state.requestRecieved && (
           <img src={loading} />
         )}
